@@ -2,14 +2,19 @@ linkInput = document.getElementById("input-el")
 saveBtn = document.getElementById("input-btn")
 ulEl = document.getElementById("ul-el")
 
+listItems = ""
 myLeads = []
+
+function updateList() {
+    ulEl.innerHTML = listItems
+}
 
 function onSave() {
     myLeads.push(linkInput.value)
 
     console.log("Button clicked!")
-    ulEl.innerHTML += `<li>${linkInput.value}</li>`
-    
+    listItems += `<li>${linkInput.value}</li>`
+    updateList()
 }
 
 saveBtn.addEventListener("click", function() {
