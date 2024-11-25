@@ -10,6 +10,7 @@ function init() {
         initLocalStorage()
     } else {
         loadLocalStorage()
+        updateList()
     }
 }
 
@@ -19,7 +20,7 @@ function initLocalStorage() {
 }
 
 function loadLocalStorage() {
-    listItems = loadLocalStorage.listItems
+    listItems = localStorage.listItems
 }
 
 function updateLocalStorage() {
