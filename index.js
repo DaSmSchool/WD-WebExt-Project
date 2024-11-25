@@ -6,7 +6,7 @@ listItems = ""
 myLeads = []
 
 function init() {
-    if (localStorage.listItems == undefined) {
+    if (localStorage.listItems == undefined || localStorage.myLeads == undefined) {
         initLocalStorage()
     } else {
         loadLocalStorage()
@@ -16,20 +16,27 @@ function init() {
 
 function initLocalStorage() {
     localStorage.setItem("listItems", '')
+    localStorage.setItem("myLeads", "[]")
     loadLocalStorage()
 }
 
 function loadLocalStorage() {
     listItems = localStorage.listItems
+    myLeads = JSON.parse(localStorage.myLeads)
 }
 
 function updateLocalStorage() {
     localStorage.listItems = listItems
+    localStorage.myLeads = JSON.stringify(myLeads)
 }
 
 function updateList() {
     updateLocalStorage()
-    ulEl.innerHTML = listItems
+    assemble = ""
+    for (let i = 0; i < myLeads.length; i++) {
+        assemble += `<li><a href="${myLeads[i]}" target='_blank'>${myLeads[i]}</a></li>`
+    }
+    ulEl.innerHTML = assemble
 }
 
 function onSave() {
